@@ -1,4 +1,5 @@
 import { Contact, Post, Story } from "@/lib/types/feed";
+import WriteComposer from "@/components/WriteComposer";
 
 const navLinks = [
   { label: "뉴스 피드", icon: "🏠" },
@@ -79,7 +80,7 @@ export default function Home() {
             <div className="relative hidden sm:block">
               <input
                 className="h-10 w-64 rounded-full border border-zinc-200 bg-zinc-50 px-4 text-sm outline-none ring-indigo-200 transition focus:border-indigo-400 focus:bg-white focus:ring-4"
-                placeholder="검색 또는 새로운 글 작성..."
+                placeholder="생각 검색 또는 주제 찾기..."
               />
               <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-zinc-400">
                 ⌘K
@@ -291,6 +292,7 @@ export default function Home() {
           </section>
         </aside>
       </main>
+      <WriteComposer />
     </div>
   );
 }

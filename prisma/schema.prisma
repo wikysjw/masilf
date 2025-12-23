@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Think {
+  id        String   @id @default(uuid()) @db.Uuid
+  author    String
+  content   String
+  emotion   String[] @db.Text
+  hashtags  String[] @db.Text
+  agree     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([author])
+  @@index([createdAt])
+}

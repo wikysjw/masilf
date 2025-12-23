@@ -1,5 +1,6 @@
-import { Contact, Post, Story } from "@/lib/types/feed";
+import { Contact, Story } from "@/lib/types/feed";
 import WriteComposer from "@/components/WriteComposer";
+import Post from "@/components/post";
 
 const navLinks = [
   { label: "뉴스 피드", icon: "🏠" },
@@ -13,44 +14,6 @@ const shortcuts = [
   { label: "내 페이지", color: "bg-indigo-500" },
   { label: "사이드 프로젝트", color: "bg-amber-500" },
   { label: "러닝 메이트", color: "bg-emerald-500" },
-];
-
-const posts: Post[] = [
-  {
-    id: 1,
-    author: "김민서",
-    role: "프로덕트 매니저",
-    time: "2시간 전",
-    text: "오늘 새벽에 스프린트 리뷰를 마쳤어요. 작은 실험들을 빠르게 돌리니 유저 피드백이 바로 보이네요. 다음 주에는 온보딩 흐름을 더 줄여보려고 합니다.",
-    likes: 128,
-    comments: 34,
-    shares: 9,
-    badge: "업데이트",
-    gradient: "from-indigo-500 via-blue-500 to-cyan-400",
-  },
-  {
-    id: 2,
-    author: "박지훈",
-    role: "디자이너",
-    time: "4시간 전",
-    text: "다크 모드에서 대비를 더 높였어요. 버튼 그림자도 줄여서 더 차분한 느낌으로 정리했습니다. 피드백 환영!",
-    likes: 86,
-    comments: 19,
-    shares: 3,
-    badge: "디자인 노트",
-    gradient: "from-amber-400 via-orange-500 to-rose-500",
-  },
-  {
-    id: 3,
-    author: "이서준",
-    role: "프론트엔드",
-    time: "어제",
-    text: "실시간 알림 웹소켓을 붙였어요. 서버 부하 없이 깔끔하게 흘러가는지 모니터링 중입니다. 혹시 끊김 있으면 알려주세요.",
-    likes: 203,
-    comments: 52,
-    shares: 17,
-    gradient: "from-emerald-500 via-teal-500 to-sky-500",
-  },
 ];
 
 const stories: Story[] = [
@@ -68,7 +31,7 @@ const contacts: Contact[] = [
   { name: "도영", status: "30분 전" },
 ];
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="min-h-screen bg-zinc-100 text-zinc-900">
       <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/80 backdrop-blur">
@@ -178,71 +141,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="space-y-4">
-            {posts.map((post) => (
-              <article
-                key={post.id}
-                className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-zinc-100"
-              >
-                <header className="flex items-start justify-between gap-3">
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-indigo-100 text-sm font-semibold text-indigo-700">
-                      {post.author.slice(0, 1)}
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <p className="text-sm font-semibold text-zinc-900">{post.author}</p>
-                        {post.badge ? (
-                          <span className="rounded-full bg-indigo-50 px-2 py-0.5 text-[11px] font-semibold text-indigo-700">
-                            {post.badge}
-                          </span>
-                        ) : null}
-                      </div>
-                      <p className="text-xs text-zinc-500">
-                        {post.role} · {post.time}
-                      </p>
-                    </div>
-                  </div>
-                  <button className="rounded-full px-2 py-1 text-lg text-zinc-400 transition hover:bg-zinc-100">
-                    ···
-                  </button>
-                </header>
-
-                <p className="mt-3 text-sm leading-6 text-zinc-800">{post.text}</p>
-
-                {post.gradient ? (
-                  <div className={`mt-4 h-64 rounded-xl bg-gradient-to-br ${post.gradient} shadow-inner`} />
-                ) : null}
-
-                <div className="mt-4 flex items-center justify-between text-xs font-semibold text-zinc-600">
-                  <div className="flex items-center gap-3">
-                    <span className="flex items-center gap-1 rounded-full bg-zinc-100 px-3 py-1">
-                      👍 {post.likes}
-                    </span>
-                    <span className="flex items-center gap-1 rounded-full bg-zinc-100 px-3 py-1">
-                      💬 {post.comments}
-                    </span>
-                    <span className="flex items-center gap-1 rounded-full bg-zinc-100 px-3 py-1">
-                      ↗️ {post.shares}
-                    </span>
-                  </div>
-                  <button className="rounded-full px-3 py-1 transition hover:bg-zinc-100">공유</button>
-                </div>
-
-                <div className="mt-3 flex items-center gap-2 border-t border-zinc-100 pt-3 text-sm font-semibold text-zinc-700">
-                  <button className="flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 transition hover:bg-zinc-50">
-                    👍 좋아요
-                  </button>
-                  <button className="flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 transition hover:bg-zinc-50">
-                    💬 댓글
-                  </button>
-                  <button className="flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 transition hover:bg-zinc-50">
-                    ↗️ 공유
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
+          <Post />
         </section>
 
         <aside className="hidden w-72 flex-col gap-4 xl:flex">

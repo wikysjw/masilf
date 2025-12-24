@@ -19,7 +19,7 @@ export const thinkService = {
         content: input.content,
         emotion: input.emotion ?? [],
         hashtags: input.hashtags ?? [],
-        agree: input.agree ?? {},
+        agree: input.agree ?? 0,
       },
     });
   },

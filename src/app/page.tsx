@@ -1,4 +1,7 @@
 import { Contact, Story } from "@/lib/types/feed";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
 import WriteComposer from "@/components/WriteComposer";
 import Post from "@/components/post";
 
@@ -32,6 +35,12 @@ const contacts: Contact[] = [
 ];
 
 export default async function Home() {
+  const cookieStore = await cookies();
+  const isAuthed = cookieStore.get("auth")?.value;
+  if (!isAuthed) {
+    redirect("/login");
+  }
+
   return (
     <div className="min-h-screen bg-zinc-100 text-zinc-900">
       <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/80 backdrop-blur">

@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   }
   const hashtags = Array.isArray(body.hashtags) ? body.hashtags : [];
   const emotion = Array.isArray(body.emotion) ? body.emotion : [];
-  const agree = body.agree ?? {};
+  const agree = typeof body.agree === "number" ? body.agree : 0;
   const item = await thinkService.create({
     author: body.author,
     content: body.content,

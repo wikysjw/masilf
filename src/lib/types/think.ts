@@ -1,5 +1,3 @@
-import { Prisma } from "@prisma/client";
-
 export type Think = {
   id: string;
   author: string;

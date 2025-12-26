@@ -19,3 +19,34 @@ model Think {
   @@index([author])
   @@index([createdAt])
 }
+
+model User {
+  id                String    @id @default(uuid()) @db.Uuid
+  email             String    @unique @db.VarChar(255)
+  username          String?   @unique @db.VarChar(50)
+  passwordHash      String    @db.Text
+  passwordUpdatedAt DateTime?
+  name              String?   @db.VarChar(100)
+  avatarUrl         String?   @db.Text
+  phone             String?   @db.VarChar(30)
+  role              String    @default("user") @db.VarChar(30)
+  status            String    @default("active") @db.VarChar(20)
+  emailVerified     Boolean   @default(false)
+  phoneVerified     Boolean   @default(false)
+  lastLoginAt       DateTime?
+  lastLoginIp       String?   @db.VarChar(45)
+  signupIp          String?   @db.VarChar(45)
+  locale            String?   @db.VarChar(10)
+  timezone          String?   @db.VarChar(50)
+  oauthProvider     String?   @db.VarChar(30)
+  oauthSubject      String?   @db.VarChar(255)
+  mfaEnabled        Boolean   @default(false)
+  mfaType           String?   @db.VarChar(20)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  deletedAt         DateTime?
+
+  @@unique([oauthProvider, oauthSubject])
+  @@index([role])
+  @@index([status])
+}

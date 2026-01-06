@@ -10,11 +10,11 @@ model Think {
   id        String   @id @default(uuid()) @db.Uuid
   author    String
   content   String
-  emotion   String[] @db.Text
-  hashtags  String[] @db.Text
-  agree     Int
+  emotion   String[]
+  hashtags  String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  agree     Int
 
   @@index([author])
   @@index([createdAt])
@@ -24,10 +24,10 @@ model User {
   id                String    @id @default(uuid()) @db.Uuid
   email             String    @unique @db.VarChar(255)
   username          String?   @unique @db.VarChar(50)
-  passwordHash      String    @db.Text
+  passwordHash      String
   passwordUpdatedAt DateTime?
   name              String?   @db.VarChar(100)
-  avatarUrl         String?   @db.Text
+  avatarUrl         String?
   phone             String?   @db.VarChar(30)
   role              String    @default("user") @db.VarChar(30)
   status            String    @default("active") @db.VarChar(20)
